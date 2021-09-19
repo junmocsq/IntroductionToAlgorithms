@@ -17,9 +17,9 @@ func InsertSort(arr []int) {
 }
 
 func TestInsertSort(t *testing.T) {
-	arr := tools.RandArr(100,20000)
+	arr := tools.RandArr(100, 20000)
 	InsertSort(arr)
-	if !tools.CheckIsSort(arr){
+	if !tools.CheckIsSort(arr) {
 		t.Errorf("insert sort failed!")
 	}
 }

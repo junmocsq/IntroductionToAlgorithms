@@ -13,8 +13,8 @@ func TestMergeSort(t *testing.T) {
 		t.Errorf("merge sort failed!")
 	}
 
-	arr = []int{3,41,26,52,38,57,9,49}
-	t.Log(mergeSort(arr,0,7))
+	arr = []int{3, 41, 26, 52, 38, 57, 9, 49}
+	t.Log(mergeSort(arr, 0, 7))
 }
 
 func BenchmarkMerge(b *testing.B) {
