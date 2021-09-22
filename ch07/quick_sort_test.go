@@ -20,9 +20,10 @@ func quickSort(arr []int, l, r int) {
 	quickSort(arr, divide+1, r)
 }
 
+// 随机化一个[l,r]中的元素和l交换
 func randArr(arr []int, l, r int) {
 	random := rand.Intn(r - l + 1)
-	arr[random], arr[r] = arr[r], arr[random]
+	arr[random+l], arr[l] = arr[l], arr[random+l]
 }
 
 // 从左端开始，
