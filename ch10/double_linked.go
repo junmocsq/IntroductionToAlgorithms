@@ -10,4 +10,3 @@ type DoubleLinked struct {
 	tail   *doubleEle
 	length int
 }
-
