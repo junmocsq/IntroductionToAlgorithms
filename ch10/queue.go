@@ -22,19 +22,15 @@ func NewQueueWithArray(capacity int) *QueueWithArray {
 		arr:      make([]*queueEle, capacity),
 		length:   0,
 		capacity: capacity,
+		start:    0,
+		end:      capacity - 1,
 	}
 }
 func (q *QueueWithArray) Empty() bool {
-	if q.length == 0 {
-		return true
-	}
-	return false
+	return q.length == 0
 }
 func (q *QueueWithArray) full() bool {
-	if q.length == q.capacity {
-		return true
-	}
-	return false
+	return q.length == q.capacity
 }
 func (q *QueueWithArray) Enqueue(val interface{}) bool {
 	if q.full() {
@@ -72,14 +68,10 @@ func NewQueueWithSlice() *QueueWithSlice {
 	return &QueueWithSlice{}
 }
 func (q *QueueWithSlice) Empty() bool {
-	if len(q.arr) == 0 {
-		return true
-	}
-	return false
+	return len(q.arr) == 0
 }
 
 func (q *QueueWithSlice) Enqueue(val interface{}) bool {
-
 	ele := &queueEle{val: val}
 	q.arr = append(q.arr, ele)
 	return true
@@ -142,10 +134,7 @@ func (q *QueueWithLinked) deleteHead() (val interface{}, ok bool) {
 }
 
 func (q *QueueWithLinked) Empty() bool {
-	if q.length == 0 {
-		return true
-	}
-	return false
+	return q.length == 0
 }
 
 func (q *QueueWithLinked) Enqueue(val interface{}) bool {

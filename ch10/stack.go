@@ -18,10 +18,7 @@ func NewStackWithSlice() *StackWithSlice {
 }
 
 func (s *StackWithSlice) Empty() bool {
-	if len(s.arr) == 0 {
-		return true
-	}
-	return false
+	return len(s.arr) == 0
 }
 
 func (s *StackWithSlice) Push(val interface{}) bool {
@@ -56,10 +53,7 @@ func NewStackWithArray(capacity int) *StackWithArray {
 }
 
 func (s *StackWithArray) Empty() bool {
-	if s.length == 0 {
-		return true
-	}
-	return false
+	return s.length == 0
 }
 
 func (s *StackWithArray) full() bool {
@@ -132,10 +126,7 @@ func (s *StackWithLinked) deleteTail() (val interface{}, ok bool) {
 }
 
 func (s *StackWithLinked) Empty() bool {
-	if s.length == 0 {
-		return true
-	}
-	return false
+	return s.length == 0
 }
 
 func (s *StackWithLinked) Push(val interface{}) bool {
