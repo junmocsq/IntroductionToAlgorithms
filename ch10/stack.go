@@ -135,3 +135,64 @@ func (s *StackWithLinked) Push(val interface{}) bool {
 func (s *StackWithLinked) Pop() (val interface{}, ok bool) {
 	return s.deleteTail()
 }
+
+// DoubleStackWithArray 同一个数组实现两个栈 10.1-2 p131
+type DoubleStackWithArray struct {
+	arr         []interface{}
+	left, right int
+}
+
+func NewDoubleStackWithArray(capacity int) *DoubleStackWithArray {
+	return &DoubleStackWithArray{
+		arr:   make([]interface{}, capacity),
+		left:  -1,
+		right: capacity,
+	}
+}
+
+func (s *DoubleStackWithArray) LeftEmpty() bool {
+	return s.left == -1
+}
+func (s *DoubleStackWithArray) RightEmpty() bool {
+	return s.right == len(s.arr)
+}
+
+func (s *DoubleStackWithArray) full() bool {
+	return s.left+1 == s.right
+}
+
+func (s *DoubleStackWithArray) PushLeft(val interface{}) bool {
+	if s.full() {
+		return false
+	}
+	s.left++
+	s.arr[s.left] = val
+	return true
+}
+func (s *DoubleStackWithArray) PopLeft() (val interface{}, ok bool) {
+	if s.LeftEmpty() {
+		return
+	}
+	val = s.arr[s.left]
+	s.left--
+	ok = true
+	return
+}
+
+func (s *DoubleStackWithArray) PushRight(val interface{}) bool {
+	if s.full() {
+		return false
+	}
+	s.right--
+	s.arr[s.right] = val
+	return true
+}
+func (s *DoubleStackWithArray) PopRight() (val interface{}, ok bool) {
+	if s.LeftEmpty() {
+		return
+	}
+	val = s.arr[s.right]
+	s.right++
+	ok = true
+	return
+}

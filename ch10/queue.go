@@ -37,13 +37,12 @@ func (q *QueueWithArray) Enqueue(val interface{}) bool {
 		return false
 	}
 	ele := &queueEle{val: val}
-	next := q.end + 1
-	if next == q.capacity {
-		next = 0
+	q.end++
+	if q.end == q.capacity {
+		q.end = 0
 	}
-	q.arr[next] = ele
+	q.arr[q.end] = ele
 	q.length++
-	q.end = next
 	return true
 }
 
@@ -58,6 +57,38 @@ func (q *QueueWithArray) Dequeue() (val interface{}, ok bool) {
 	}
 	q.length--
 	return ele.val, true
+}
+func (q *QueueWithArray) LPush(val interface{}) bool {
+	if q.full() {
+		return false
+	}
+	ele := &queueEle{val: val}
+	q.start--
+	if q.start == -1 {
+		q.start = q.capacity - 1
+	}
+	q.arr[q.start] = ele
+	q.length++
+	return true
+}
+func (q *QueueWithArray) RPop() (val interface{}, ok bool) {
+	if q.Empty() {
+		return
+	}
+	ele := q.arr[q.end]
+	q.end--
+	if q.end == -1 {
+		q.end = q.capacity - 1
+	}
+	q.length--
+	return ele.val, true
+}
+
+func (q *QueueWithArray) RPush(val interface{}) bool {
+	return q.Enqueue(val)
+}
+func (q *QueueWithArray) LPop() (val interface{}, ok bool) {
+	return q.Dequeue()
 }
 
 type QueueWithSlice struct {
