@@ -16,6 +16,7 @@ type DoubleLinked struct {
 	length int
 }
 
+
 func NewDoubleLinked() *DoubleLinked {
 	sentinel := &doubleEle{
 		val: nil,
@@ -65,3 +66,4 @@ func (l *DoubleLinked) Print() {
 		x = x.next
 	}
 }
+
