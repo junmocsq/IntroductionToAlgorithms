@@ -13,7 +13,6 @@ type doubleEle struct {
 
 type DoubleLinked struct {
 	root *doubleEle
-
 	length int
 }
 
